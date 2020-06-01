@@ -11,7 +11,7 @@ class ContactList extends Component
 {
     use WithPagination;
 
-    public $perPage = 5;
+    public $perPage = 10;
     public $sortField = 'name';
     public $sorAsc = true;
     public $search = '';
@@ -27,17 +27,18 @@ class ContactList extends Component
         $this->sortField = $field;
     }
 
-    public function edit($id)
-    {
-        $customer = Customer::findOrFail($id);
-        return view('livewire.customer.form',[
-            'customer' => $customer
-        ]);
-    }
 
     public function deleteCustomer($id)
     {
-        dd($id);
+        $customers = Customer::findOrFail($id);
+        $customers->packages()->where('customer_id','=',$id)->detach();
+        $result = $customers->delete();
+        if(!$result)
+        {
+            dd('Error Deleting Item');
+        }
+        $this->render();
+        //dd($id);
     }
 
     public function render()

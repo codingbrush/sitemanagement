@@ -5,7 +5,6 @@
         <div class="col form-inline">
             Per Page: &nbsp;
             <select wire:model="perPage" class="form-control">
-                <option>5</option>
                 <option>10</option>
                 <option>15</option>
                 <option>25</option>
@@ -31,8 +30,9 @@
                 <td>{{ $customer->email }}</td>
                 <td>{{$customer->telephone}}</td>
                 <td>
-                <a class="btn btn-primary btn-sm"  href="{{route('customer.edit',$customer->id)}}">edit</a>
-                    <a class="btn btn-danger btn-sm" wire:click="deleteCustomer({{$customer->id}})">del</a>
+                    <a href="{{route('customer.show',$customer->id)}}" class="btn btn-outline-info "><img src="{{asset('bootstrap-icons/person-lines-fill.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>
+                    <a class="btn btn-primary btn-sm"  href="{{route('customer.edit',$customer->id)}}"><img src="{{asset('bootstrap-icons/pencil-square.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>
+                <a class="btn btn-danger btn-sm" wire:click="deleteCustomer({{$customer->id}})"><img src="{{asset('bootstrap-icons/x.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>
                 </td>
             </tr>
         @endforeach

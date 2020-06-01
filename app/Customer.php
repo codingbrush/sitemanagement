@@ -10,7 +10,9 @@ class Customer extends Model
 
     public function packages()
     {
-        return $this->belongsToMany(Package::class);
+        return $this->belongsToMany(Package::class,'customer_package','customer_id','package_id')
+            ->withPivot('id')
+            ->withTimestamps();
    }
 
     public static function search($query)
