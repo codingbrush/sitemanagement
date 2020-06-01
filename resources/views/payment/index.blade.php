@@ -2,13 +2,15 @@
 
 @section('content')
 
-    <div class="card">
-        <div class="card-body">
+<div class="card">
+    <div class="card-body">
+    <form action="{{route('payment.store')}}" method="POST">
+        @csrf
             <div class="row">
                 <div class="form-group col">
                     <label for="name">Name</label>
                     <select name="customer_id" id="customer_id" class="form-control">
-                        <option >Choose Customer</option>
+                        <option>Choose Customer</option>
                         @foreach($customers as $customer)
                         <option value="{{$customer->id}}">{{$customer->name}}</option>
                         @endforeach
@@ -16,7 +18,7 @@
                 </div>
                 <div class="form-group col">
                     <label for="email">Customer Mail:</label>
-                    <input type="text" name="email" id="email" class="form-control" readonly>
+                    <input type="text" name="email" id="email" class="form-control" value="" readonly>
                 </div>
                 <div class="form-group col">
                     <label for="telephone">Monthly Price:</label>
@@ -37,39 +39,47 @@
                     <input type="text" name="packagename" id="packagename" class="form-control" readonly>
                 </div>
             </div>
-        </div>
+            <div class="row ">
+                <div class="col text-center ">
+                    <button href="" class="btn btn-primary btn-md text-center align-content-center">Pay!</button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
 @endsection
 @section('scripts')
-    <script>
+<script>
+    const customers = document.querySelector('#customer_id');
+    const amountdue = document.querySelector('#amount_due');
+    const monthly = document.querySelector('#monthly_price');
+    const email = document.querySelector('#email');
+    const telephone = document.querySelector('#telephone');
+    const package = document.querySelector('#packagename');
 
-        const customers = document.querySelector('#customer_id');
-        const amountdue = document.querySelector('#amount_due');
-        const monthly = document.querySelector('#monthly_price');
-        const email = document.querySelector('#email');
-        const telephone = document.querySelector('#telephone');
-        const package = document.querySelector('#packagename');
 
-        customers.addEventListener('change',function(event){
-            //console.log(event.target.value);
-            getData(event.target.value)
-        });
-        function getData(id){
-            //alert(value)
-            let url = 'http://sitemanagement.test:8080/getDetails/';
-            let cid = id;
-            console.log(cid);
-            fetch(url+cid)
-                .then((resp) => resp.json()) // Transform the data into json
-                .then(function(data) {
-                    console.log(data)
-                    amountdue.value = data[0].total_price;
-                    monthly.value = data[0].monthly_price;
-                    email.value = data[0].email;
-                    telephone.value = data[0].telephone;
-                    package.value = data[0].packagename;
-                })
-        }
-    </script>
+    customers.addEventListener('change', function (event) {
+        //console.log(event.target.value);
+        getData(event.target.value)
+    });
+
+    function getData(id) {
+        //alert(value)
+        let url = "{{url('/getDetails')}}";
+        let cid = id;
+        console.log(cid);
+        fetch(url + '/' + cid)
+            .then((resp) => resp.json()) // Transform the data into json
+            .then(function (data) {
+                console.log(data)
+                amountdue.value = data[0].total_price;
+                monthly.value = data[0].monthly_price;
+                email.value = data[0].email;
+                telephone.value = data[0].telephone;
+                package.value = data[0].packagename;
+            })
+    }
+
+</script>
 @endsection

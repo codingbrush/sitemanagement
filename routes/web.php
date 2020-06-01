@@ -23,3 +23,4 @@ Route::put('/customer/{id}/update','CustomerController@update')->name('customer.
 
 Route::get('/payment','PaymentController@index')->name('payment.index');
 Route::get('getDetails/{id}','PaymentController@getDetails')->name('payment.details');
+Route::post('/payment','PaymentController@store')->name('payment.store');

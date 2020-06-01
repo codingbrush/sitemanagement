@@ -39,4 +39,9 @@ class PaymentController extends Controller
 //        return response()->json($payments);
         echo json_encode($payments);
     }
+
+    public function store(Request $request)
+    {
+        dd($request);
+    }
 }
