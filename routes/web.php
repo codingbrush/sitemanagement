@@ -21,4 +21,5 @@ Route::post('/customer', 'CustomerController@store')->name('customer.store');
 Route::put('/customer/{id}/update','CustomerController@update')->name('customer.update');
 //Route::delete('/customer/{id}','CustomerController@destroy')->name('customer.delete');
 
-//Route::get('/dashboard')
+Route::get('/payment','PaymentController@index')->name('payment.index');
+Route::get('getDetails/{id}','PaymentController@getDetails')->name('payment.details');

@@ -13,7 +13,6 @@
     </div>
 @endif
 </div>
-{{($customers->packages[0]->id)}}
 <form method="post"
     action="{{Route::is('customer.edit') ? route('customer.update',$customers->id) : route('customer.store')}}">
     @if (Route::is('customer.edit'))
