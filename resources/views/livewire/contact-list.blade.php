@@ -30,6 +30,7 @@
                 <td>{{ $customer->email }}</td>
                 <td>{{$customer->telephone}}</td>
                 <td>
+                    <a href="{{route('payment.index',$customer->id)}}" class="btn btn-outline-warning"><img src="{{asset('bootstrap-icons/file-check.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>
                     <a href="{{route('customer.show',$customer->id)}}" class="btn btn-outline-info "><img src="{{asset('bootstrap-icons/person-lines-fill.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>
                     <a class="btn btn-primary btn-sm"  href="{{route('customer.edit',$customer->id)}}"><img src="{{asset('bootstrap-icons/pencil-square.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>
                 <a class="btn btn-danger btn-sm" wire:click="deleteCustomer({{$customer->id}})"><img src="{{asset('bootstrap-icons/x.svg')}}" alt="" width="16" height="16" title="Bootstrap"></a>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    protected $fillabe = ['customer_id','payment_id','amount_due','amount_payed','due_date'];
+    protected $fillable = ['customer_id','amount_left','amount_paid','defaulted_amount','defaulted'];
 
     protected $casts = ['due_date'];
 

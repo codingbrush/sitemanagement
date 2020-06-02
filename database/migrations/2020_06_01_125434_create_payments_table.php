@@ -16,8 +16,10 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
+            $table->decimal('amount_left',8,2)->nullable()->default(0.00);
             $table->decimal('amount_paid',8,2)->nullable();
-            $table->boolean('defaulted')->default(0);
+            $table->decimal('defaulted_amount',8,2)->nullable()->default(0.00);
+            $table->boolean('defaulted')->nullable()->default(0);
             $table->timestamps();
         });
     }
