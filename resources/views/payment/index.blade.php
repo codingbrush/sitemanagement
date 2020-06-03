@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('vendor.multiauth.layouts.app')
 
 @section('content')
 
@@ -87,7 +87,7 @@
 
     function getData(id) {
 
-        let url = "{{url('/getDetails')}}";
+        let url = "{{url('/admin/getDetails')}}";
         let cid = id;
         let amount_left;
         let defaulted_amount;

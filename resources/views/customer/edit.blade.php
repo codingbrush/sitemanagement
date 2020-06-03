@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('vendor.multiauth.layouts.app')
 
 @section('content')
 <div class="row p-3">
